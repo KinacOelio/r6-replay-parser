@@ -22,14 +22,18 @@ def bytes_to_hex_string(hex_bytes):
     return ' '.join([hex_str[i:i + 4] for i in range(0, len(hex_str), 4)])
 
 
-def print_block(hex_bytes, explanation, args):
-    print("--------------------------" * 5)
-    if not args.hide_source_bytes:
-        hex_string = bytes_to_hex_string(hex_bytes)
-        if len(hex_string) > (args.column_width - 10):
-            hex_string = hex_string[:args.column_width - 13] + "..."
+def print_block(hex_bytes, explanation, args, segment):
+    if segment == 0:
+        print("--------------------------" * 5)
+        if not args.hide_source_bytes:
+            hex_string = bytes_to_hex_string(hex_bytes)
+            if len(hex_string) > (args.column_width - 10):
+                hex_string = hex_string[:args.column_width - 13] + "..."
 
-        print(hex_string, end='')
-        print(' ' * (args.column_width - len(hex_string)), end='')
+            print(hex_string, end='')
+            print(' ' * (args.column_width - len(hex_string)), end='')
 
-    print(explanation)
+        print(explanation)
+    elif segment == 1:
+        print("--------------------------" * 5)
+        print(bytes_to_hex_string(hex_bytes))
