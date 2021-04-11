@@ -115,6 +115,8 @@ class MultiBlockSegment(SegmentWithHeader):
 
     @staticmethod
     def parse_block(bytestream: BinaryIO, block_size: int):
+        if block_size is None:
+            raise ValueError("block_size is required for MultiBlockSegment")
         return RecBlock.from_bytestream(bytestream, block_size)
 
     def __repr__(self):
