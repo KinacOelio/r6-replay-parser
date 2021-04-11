@@ -17,9 +17,8 @@ def decode_integer(hex_bytes):
         raise ValueError(f"ByteString: {bytes_to_hex_string(hex_bytes)} is of incorrect length")
 
 
-def bytes_to_hex_string(hex_bytes):
-    hex_str = hex_bytes.hex().upper()
-    return ' '.join([hex_str[i:i + 4] for i in range(0, len(hex_str), 4)])
+def bytes_to_hex_string(hex_bytes: bytes):
+    return hex_bytes.hex(' ', -2).upper()
 
 
 def print_block(hex_bytes, explanation, args):
